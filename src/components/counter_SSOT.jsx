@@ -9,6 +9,13 @@ class Counter_SSOT extends Component {
     fontWeight: "bold",
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log("prevProps", prevProps);
+    console.log("prevState", prevState);
+  }
+  componentWillUnmount() {
+    console.log("Counter - unmounted");
+  }
   renderTag() {}
 
   render() {

@@ -14,6 +14,17 @@ class App extends Component {
       { id: 4, value: 0 },
     ],
   };
+  constructor(props) {
+    super(props);
+    console.log("App - constructed");
+  }
+  componentDidMount = () => {
+    console.log("App - mounted");
+  };
+  componentWillUnmount() {
+    console.log("App - unmounted");
+  }
+
   handleReset = (event) => {
     const counter = this.state.numCounter.map((x) => {
       x.value = 0;
@@ -35,7 +46,9 @@ class App extends Component {
 
     this.setState({ numCounter: counter });
   };
+
   render() {
+    console.log("App - rendedred");
     return (
       <React.Fragment>
         <Navbar
