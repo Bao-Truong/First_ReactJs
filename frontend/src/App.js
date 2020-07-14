@@ -4,7 +4,9 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Counters from "./components/countes";
 import Counters_liftUp from "./components/counters_Lift_Up";
-
+import { Button } from "@material-ui/core";
+import axios from "axios";
+import TableList from "./components/TableList";
 class App extends Component {
   state = {
     numCounter: [
@@ -46,7 +48,21 @@ class App extends Component {
 
     this.setState({ numCounter: counter });
   };
-
+  handleGetweather = () => {
+    axios.get("/getWeather").then((res) => {
+      console.log(res);
+    });
+  };
+  handleGetallStudent = () => {
+    axios.post("api/getAllStudent").then((res) => {
+      console.log(res.data);
+    });
+  };
+  handleDescribestudent = () => {
+    axios.post("api/describestudent").then((res) => {
+      console.log(res.data);
+    });
+  };
   render() {
     console.log("App - rendedred");
     return (
@@ -55,12 +71,17 @@ class App extends Component {
           totalItems={this.state.numCounter.filter((c) => c.value > 0).length}
         />
         <main className="container">
-          <Counters_liftUp
+          {/* <Counters_liftUp
             onIncrement={this.handleIncrement}
             onDelete={this.handleDelete}
             onReset={this.handleReset}
             counter={this.state.numCounter}
-          />
+          /> */}
+          <TableList></TableList>
+
+          <Button onClick={this.handleGetweather}>Get Weather</Button>
+          <Button onClick={this.handleGetallStudent}>Get Student</Button>
+          <Button onClick={this.handleDescribestudent}>Describe Student</Button>
         </main>
       </React.Fragment>
     );
